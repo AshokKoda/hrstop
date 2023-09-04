@@ -28,4 +28,9 @@ public class EmpService {
         emp.setEmp_email(employee.getEmp_email());
         return empRepository.save(emp);
     }
+
+    public String delete(int emp_id) {
+        empRepository.deleteById(emp_id);
+        return "Employee is deleted " + emp_id;
+    }
 }
