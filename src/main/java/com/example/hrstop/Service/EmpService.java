@@ -21,4 +21,11 @@ public class EmpService {
     public void save(Employee employee) {
         empRepository.save(employee);
     }
+
+    public Employee update(Employee employee) {
+        Employee emp = empRepository.findById(employee.getEmp_id()).orElse(null);
+        emp.setEmp_name(employee.getEmp_name());
+        emp.setEmp_email(employee.getEmp_email());
+        return empRepository.save(emp);
+    }
 }
