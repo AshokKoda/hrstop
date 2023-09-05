@@ -26,6 +26,7 @@ public class EmpService {
         Employee emp = empRepository.findById(employee.getEmp_id()).orElse(null);
         emp.setEmp_name(employee.getEmp_name());
         emp.setEmp_email(employee.getEmp_email());
+        emp.setEmp_password(employee.getEmp_password());
         return empRepository.save(emp);
     }
 

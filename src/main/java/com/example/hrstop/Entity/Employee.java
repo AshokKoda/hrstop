@@ -27,4 +27,6 @@ public class Employee {
     private String emp_code;
     @Column(name = "emp_email")
     private String emp_email;
+    @Column(name = "emp_password")
+    private String emp_password;
 }
