@@ -1,5 +1,6 @@
 package com.example.hrstop.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ public class EmpService {
         return empRepository.findAll();
     }
 
-    public void save(Employee employee) {
+    public void save(Employee employee) throws ParseException {
         String currenrDate = new SimpleDateFormat("yy-MM-dd", Locale.getDefault()).format(new Date());
         String[] dateParts = currenrDate.split("-");
         String year = dateParts[0];
@@ -37,6 +38,11 @@ public class EmpService {
         String empCode = year + month + day + random;
         employee.setEmp_code(empCode);
 
+        String doj = new SimpleDateFormat("E, MMM dd yyyy", Locale.getDefault()).format(new Date());
+        SimpleDateFormat format = new SimpleDateFormat("E, MMM dd yyyy");  
+        Date d = format.parse(doj);
+        employee.setEmp_doj(d);
+
         encodePassword(employee);
         empRepository.save(employee);
     }
@@ -46,6 +52,7 @@ public class EmpService {
         emp.setEmp_name(employee.getEmp_name());
         emp.setEmp_email(employee.getEmp_email());
         emp.setEmp_password(employee.getEmp_password());
+        emp.setEmp_phoneno(employee.getEmp_phoneno());
         encodePassword(emp);
         return empRepository.save(emp);
     }

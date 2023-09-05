@@ -1,5 +1,7 @@
 package com.example.hrstop.Entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,4 +31,8 @@ public class Employee {
     private String emp_email;
     @Column(name = "emp_password")
     private String emp_password;
+    @Column(name = "emp_phoneno")
+    private String emp_phoneno;
+    @Column(name = "emp_doj")
+    private Date emp_doj;
 }

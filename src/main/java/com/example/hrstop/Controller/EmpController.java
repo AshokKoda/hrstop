@@ -1,5 +1,6 @@
 package com.example.hrstop.Controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class EmpController {
     }
 
     @PostMapping("/save")
-    public void saveEmployee(@RequestBody Employee employee) {
+    public void saveEmployee(@RequestBody Employee employee) throws ParseException {
         empService.save(employee);
     }
 
