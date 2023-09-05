@@ -3,6 +3,7 @@ package com.example.hrstop.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.hrstop.Entity.Employee;
@@ -14,11 +15,15 @@ public class EmpService {
     @Autowired
     private EmpRepository empRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Employee> getAllEmployees() {
         return empRepository.findAll();
     }
 
     public void save(Employee employee) {
+        encodePassword(employee);
         empRepository.save(employee);
     }
 
@@ -27,6 +32,7 @@ public class EmpService {
         emp.setEmp_name(employee.getEmp_name());
         emp.setEmp_email(employee.getEmp_email());
         emp.setEmp_password(employee.getEmp_password());
+        encodePassword(emp);
         return empRepository.save(emp);
     }
 
@@ -37,5 +43,10 @@ public class EmpService {
 
     public Employee getEmpById(int emp_id) {
         return empRepository.findById(emp_id).get();
+    }
+
+    public void encodePassword(Employee password) {
+        String encoded = passwordEncoder.encode(password.getEmp_password());
+        password.setEmp_password(encoded);
     }
 }
