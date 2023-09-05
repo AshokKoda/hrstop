@@ -33,4 +33,8 @@ public class EmpService {
         empRepository.deleteById(emp_id);
         return "Employee is deleted " + emp_id;
     }
+
+    public Employee getEmpById(int emp_id) {
+        return empRepository.findById(emp_id).get();
+    }
 }

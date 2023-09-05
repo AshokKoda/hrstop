@@ -39,4 +39,9 @@ public class EmpController {
     public String deleteEmployeeById(@PathVariable int emp_id) {
         return empService.delete(emp_id);
     }
+
+    @GetMapping("/getByEmpId/{emp_id}")
+    public Employee getEmpById(@PathVariable int emp_id) {
+        return empService.getEmpById(emp_id);
+    }
 }
